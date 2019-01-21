@@ -12,7 +12,7 @@ const Total = (props) => {
 const Average = (props) => {
     return (
         <div>
-            <p>keskiarvo {props.good - props.bad / (props.good + props.neutral + props.bad)}</p>
+            <p>keskiarvo {(props.good - props.bad) / (props.good + props.neutral + props.bad)}</p>
         </div>
     )
 }

@@ -26,6 +26,15 @@ const GoodPortion = (props) => {
 }
 
 const Statistics = (props) => {
+
+    if (props.good + props.neutral + props.bad === 0)
+        return ( 
+            <div>
+                <h1>statistiikka</h1>
+                <p>Ei yhtään palautetta annettu</p>
+            </div>
+        ) 
+
     return (
         <div>
             <h1>statistiikka</h1>

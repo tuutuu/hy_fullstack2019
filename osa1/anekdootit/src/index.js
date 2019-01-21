@@ -9,6 +9,8 @@ const App = (props) => {
 
     const random = Math.floor(Math.random() * 6)
 
+    let max_anecdote_pointer = points.indexOf(Math.max(...points))
+
     const handleClick = () => {
         const copy = [...points]
         copy[selected] += 1
@@ -17,6 +19,7 @@ const App = (props) => {
 
     return (
         <div>
+            <h1>Anecdote of the day</h1>
             <p>{props.anecdotes[selected]}</p>
             <p>({points[selected]} votes)</p>
             <button onClick={handleClick}>
@@ -25,6 +28,9 @@ const App = (props) => {
             <button onClick={() => setSelected(random)}>
                 next anecdote
             </button>
+            <h2>Anecdote with most votes</h2>
+            <p>{anecdotes[max_anecdote_pointer]}</p>
+            <p>({points[max_anecdote_pointer]} votes)</p>
         </div>
     )
 }

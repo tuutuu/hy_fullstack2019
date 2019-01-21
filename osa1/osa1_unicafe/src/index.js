@@ -1,26 +1,48 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
+const Button = ({ handleClick, text }) => {
+    return (
+        <button onClick={handleClick}>
+            {text}
+        </button>
+    )
+}
+
 const Total = (props) => {
+    const stat = props.good + props.neutral + props.bad
+
     return (
         <div>
-            <p>yhteensä {props.good + props.neutral + props.bad}</p>
+            <Statistic text='yhteensä' stat={stat} />
         </div>
     )
 }
 
 const Average = (props) => {
+    const stat = (props.good - props.bad) / (props.good + props.neutral + props.bad)
+
     return (
         <div>
-            <p>keskiarvo {(props.good - props.bad) / (props.good + props.neutral + props.bad)}</p>
+            <Statistic text='keskiarvo' stat={stat} />
         </div>
     )
 }
 
 const GoodPortion = (props) => {
+    const stat = props.good / (props.good + props.neutral + props.bad)
+
     return (
         <div>
-            <p>positiivisia {100.0 * (props.good/(props.good + props.neutral + props.bad))}</p>
+            <Statistic text='positiivisia' stat={stat} />
+        </div>
+    )
+}
+
+const Statistic = ({ text , stat }) => {
+    return (
+        <div>
+            <p>{text} {stat}</p>
         </div>
     )
 }
@@ -53,18 +75,24 @@ const App = () => {
     const [neutral, setNeutral] = useState(0)
     const [bad, setBad] = useState(0)
 
+    const handleGoodClick = () => {
+        setGood(good + 1)
+    }
+
+    const handleNeutralClick = () => {
+        setNeutral(neutral + 1)
+    }
+
+    const handleBadClick = () => {
+        setBad(bad + 1)
+    }
+
     return (
         <div>
             <h1>anna palautetta</h1>
-            <button onClick={() => setGood(good + 1)}>
-                hyvä
-            </button>
-            <button onClick={() => setNeutral(neutral + 1)}>
-                neutraali
-            </button>
-            <button onClick={() => setBad(bad + 1)}>
-                huono
-            </button>
+            <Button handleClick={handleGoodClick} text='hyvä' />
+            <Button handleClick={handleNeutralClick} text='neutraali' />
+            <Button handleClick={handleBadClick} text='huono' />
             <Statistics good={good} neutral={neutral} bad={bad} />
         </div>
     )

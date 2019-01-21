@@ -13,9 +13,7 @@ const Total = (props) => {
     const stat = props.good + props.neutral + props.bad
 
     return (
-        <div>
-            <Statistic text='yhteensä' stat={stat} />
-        </div>
+        <Statistic text='yhteensä' stat={stat} />
     )
 }
 
@@ -23,27 +21,21 @@ const Average = (props) => {
     const stat = (props.good - props.bad) / (props.good + props.neutral + props.bad)
 
     return (
-        <div>
-            <Statistic text='keskiarvo' stat={stat} />
-        </div>
+        <Statistic text='keskiarvo' stat={stat} />
     )
 }
 
 const GoodPortion = (props) => {
     const stat = props.good / (props.good + props.neutral + props.bad)
 
-    return (
-        <div>
-            <Statistic text='positiivisia' stat={stat} />
-        </div>
+    return (        
+        <Statistic text='positiivisia' stat={stat} />
     )
 }
 
 const Statistic = ({ text , stat }) => {
     return (
-        <div>
-            <p>{text} {stat}</p>
-        </div>
+        <td>{text} {stat}</td>
     )
 }
 
@@ -60,12 +52,34 @@ const Statistics = (props) => {
     return (
         <div>
             <h1>statistiikka</h1>
-            <p>hyvä {props.good}</p>
-            <p>neutraali {props.neutral}</p>
-            <p>huono {props.bad}</p>
-            <Total good={props.good} neutral={props.neutral} bad={props.bad} />
-            <Average good={props.good} neutral={props.neutral} bad={props.bad} />
-            <GoodPortion good={props.good} neutral={props.neutral} bad={props.bad} />
+            <table>
+                <tbody>      
+                    <tr>
+                        <td>hyvä</td>
+                        <td>{props.good}</td>       
+                    </tr>
+                    <tr>
+                        <td>neutraali</td>
+                        <td>{props.neutral}</td>       
+                    </tr>
+                    <tr>
+                        <td>huono</td>
+                        <td>{props.bad}</td>       
+                    </tr>
+                    <tr>
+                        <td>yhteensä</td>
+                        <Total good={props.good} neutral={props.neutral} bad={props.bad} />  
+                    </tr>
+                    <tr>
+                        <td>keskiarvo</td>
+                        <Average good={props.good} neutral={props.neutral} bad={props.bad} />    
+                    </tr>
+                    <tr>
+                        <td>keskiarvo</td>
+                        <GoodPortion good={props.good} neutral={props.neutral} bad={props.bad} />      
+                    </tr>
+                </tbody>  
+            </table>
         </div>
     )
 }
@@ -97,7 +111,5 @@ const App = () => {
         </div>
     )
 }
-
-
 
 ReactDOM.render(<App />, document.getElementById('root'))

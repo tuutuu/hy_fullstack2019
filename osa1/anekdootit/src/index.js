@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 const App = (props) => {
     const [selected, setSelected] = useState(0)
     const [points, setPoints] = useState(
-            Array.apply(null, new Array(10)).map(Number.prototype.valueOf,0)
+            Array.apply(null, new Array(6)).map(Number.prototype.valueOf,0)
         )
 
     const random = Math.floor(Math.random() * 6)

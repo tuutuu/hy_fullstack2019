@@ -6,6 +6,7 @@ const Course = (props) => {
     <div>
       <Header course={props.course} />
       <Content course={props.course} />
+      <Total parts={props.course.parts} />
     </div>
   )
 }
@@ -14,7 +15,11 @@ const Header = props =>
   <h1>{props.course.name}</h1>
 
 const Total = props => {
-  const total = props.parts[0].exercises + props.parts[1].exercises + props.parts[2].exercises
+  let initialValue = 0
+  let total = props.parts.reduce(
+    (accumulator, currentValue) => accumulator + currentValue.exercises
+    ,initialValue
+  )
 
   return <p>yhteensä {total} tehtävää</p>
 }

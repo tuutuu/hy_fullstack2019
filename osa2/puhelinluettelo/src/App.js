@@ -17,8 +17,14 @@ const App = () => {
       name: newName
     }
   
-    setPersons(persons.concat(personObject))
-    setNewName('')
+    if (persons.filter(person => (person.name === newName)).length !== 0) {
+      alert(`${newName} on jo luettelossa`)
+    }
+
+    else {
+      setPersons(persons.concat(personObject))
+      setNewName('')
+    }
   }
 
   return (
@@ -36,7 +42,6 @@ const App = () => {
       </ul>
     </div>
   )
-
 }
 
 export default App

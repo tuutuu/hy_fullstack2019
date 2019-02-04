@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 
 const PersonForm = ({ persons, setPersons, newName, setNewName, newNumber, setNewNumber }) => {
     const addPerson = (event) => {
@@ -7,7 +8,7 @@ const PersonForm = ({ persons, setPersons, newName, setNewName, newNumber, setNe
             name: newName,
             number: newNumber
         }
-      
+
         if (persons.filter(person => (person.name === newName)).length !== 0) {
             alert(`${newName} on jo luettelossa`)
         }
@@ -15,7 +16,13 @@ const PersonForm = ({ persons, setPersons, newName, setNewName, newNumber, setNe
         else {
             setPersons(persons.concat(personObject))
             setNewName('')
-        }
+
+            axios
+                .post('http://localhost:3001/persons', personObject)
+                .then(response => {
+                    console.log(response)
+                })
+        }  
     }
 
     const handleNameChange = (event) => {

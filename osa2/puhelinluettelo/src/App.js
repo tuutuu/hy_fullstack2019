@@ -19,7 +19,6 @@ const App = () => {
         setPersons(response.data)
       })
   }, [])
-  console.log('render', persons.length, 'persons')
 
   return (
     <div>

@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import FilterForm from './components/FilterForm'
+import PersonForm from './components/PersonForm'
+import Phonebook from './components/Phonebook'
 
 const App = () => {
   const [ persons, setPersons] = useState([
@@ -12,64 +15,17 @@ const App = () => {
   const [ newNumber, setNewNumber ] = useState('')
   const [ newFilter, setNewFilter ] = useState('')
 
-  const personsToShow =
-    persons.filter(person => person.name.toUpperCase().includes(newFilter.toUpperCase()))
-
-  const rows = () => personsToShow.map(person =>
-    <li key={person.name}>{person.name} {person.number}</li>
-  )
-
-  const handleNameChange = (event) => {
-    console.log(event.target.value)
-    setNewName(event.target.value)
-  }
-
-  const handleNumberChange = (event) => {
-    console.log(event.target.value)
-    setNewNumber(event.target.value)
-  }
-
-  const handleFilterChange = (event) => {
-    console.log(event.target.value)
-    setNewFilter(event.target.value)
-  }
-
-  const addPerson = (event) => {
-    event.preventDefault()
-    const personObject = {
-      name: newName,
-      number: newNumber
-    }
   
-    if (persons.filter(person => (person.name === newName)).length !== 0) {
-      alert(`${newName} on jo luettelossa`)
-    }
 
-    else {
-      setPersons(persons.concat(personObject))
-      setNewName('')
-    }
-  }
+  
 
   return (
     <div>
       <h2>Puhelinluettelo</h2>
-      <div>
-        rajaa näytettäviä: <input value={newFilter} onChange={handleFilterChange} />
-      </div>
-      <form onSubmit={addPerson}>
-      <div>
-        nimi: <input value={newName} onChange={handleNameChange} /></div>
-      <div>
-        numero: <input value={newNumber} onChange={handleNumberChange} /></div>
-      <div>
-        <button type="submit">lisää</button>
-      </div>
-      </form>
+      <FilterForm newFilter={newFilter} setNewFilter={setNewFilter} />
+      <PersonForm persons={persons} setPersons={setPersons} newName={newName} setNewName={setNewName} newNumber={newNumber} setNewNumber={setNewNumber} />
       <h2>Numerot</h2>
-      <ul>
-        {rows()}
-      </ul>
+      <Phonebook persons={persons} newFilter={newFilter} />
     </div>
   )
 }

@@ -9,8 +9,17 @@ const PersonForm = ({ persons, setPersons, newName, setNewName, newNumber, setNe
             number: newNumber
         }
 
-        if (persons.filter(person => (person.name === newName)).length !== 0) {
-            alert(`${newName} on jo luettelossa`)
+        const person = persons.find(p => p.name === newName)
+        console.log(person)
+
+        if (person.name === newName) {
+            if (window.confirm(`${newName} on jo luettelossa, korvataanko vanha numero uudella?`)) {
+                personService
+                    .update(person.id, personObject)
+                    .then(response => {
+                        setPersons(persons.map(person => person.name !== newName ? person : personObject))
+                    })
+            }
         }
     
         else {

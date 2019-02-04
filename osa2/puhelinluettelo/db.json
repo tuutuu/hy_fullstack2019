@@ -6,29 +6,14 @@
       "id": 1
     },
     {
-      "name": "Marko Tienari",
-      "number": "040-1346456",
-      "id": 2
-    },
-    {
       "name": "Marto Märvinen",
       "number": "040-863456",
       "id": 3
     },
     {
       "name": "Lea Kutvos",
-      "number": "040-123456",
+      "number": "050-24426",
       "id": 4
-    },
-    {
-      "name": "Tuure Piitulainen",
-      "number": "050-666",
-      "id": 5
-    },
-    {
-      "name": "Mikael Kosonen",
-      "number": "050-1244",
-      "id": 6
     }
   ]
 }

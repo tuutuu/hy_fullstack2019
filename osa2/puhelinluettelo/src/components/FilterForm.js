@@ -1,16 +1,9 @@
 import React from 'react'
 
-const FilterForm = ( {newFilter, setNewFilter} ) => {
-    
-    
-    const handleFilterChange = (event) => {
-        console.log(event.target.value)
-        setNewFilter(event.target.value)
-    }
-
+const FilterForm = (props) => {
     return (
         <div>
-            rajaa näytettäviä: <input value={newFilter} onChange={handleFilterChange} />
+            rajaa näytettäviä: <input onChange={props.handleFilterChange} value={props.newFilter}  />
         </div>
     )
 }

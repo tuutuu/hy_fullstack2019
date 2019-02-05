@@ -98,7 +98,7 @@ const App = () => {
       <Notification notification={notification} />
       <FilterForm newFilter={newFilter} handleFilterChange={handleFilterChange} />
       <PersonForm 
-        andleNameChange={handleNameChange}
+        handleNameChange={handleNameChange}
         handleNumberChange={handleNumberChange}
         addPerson={addPerson}
         newName={newName}

@@ -6,11 +6,6 @@
       "id": 1
     },
     {
-      "name": "Marko Tienari",
-      "number": "040-1346456",
-      "id": 2
-    },
-    {
       "name": "Marto Märvinen",
       "number": "040-863456",
       "id": 3
@@ -29,6 +24,11 @@
       "name": "Mikael Kosonen",
       "number": "050-1244",
       "id": 6
+    },
+    {
+      "name": "Tuuba Korhonen",
+      "number": "050-7557057",
+      "id": 7
     }
   ]
 }

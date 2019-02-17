@@ -4,9 +4,10 @@ GET http://localhost:3003/api/blogs
 
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
+
 {
-  "title": "Kitaroita ja kahvinkeittimiä",
-  "author": "Tuure Piitulainen",
-  "url": "www.blogspot.com/kitarakahvi",
-  "likes": 2
+  "title": "Akvaarioblogi",
+  "author": "Juulia Ahven",
+  "url": "www.blogspot.com/akvblo",
+  "likes": 500
 }

@@ -3,12 +3,13 @@ if (process.env.NODE_ENV !== 'production') {
 }
 const config = require('./utils/config')
 const http = require('http')
+const app = require('./app')
 const express = require('express')
-const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const mongoose = require('mongoose')
 
+/*
 const blogSchema = mongoose.Schema({
   title: String,
   author: String,
@@ -50,8 +51,9 @@ app.post('/api/blogs', (request, response) => {
       response.status(201).json(result)
     })
 })
+*/
+const server = http.createServer(app)
 
-const PORT = process.env.PORT || 3003
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
+server.listen(config.PORT, () => {
+  console.log(`Server running on port ${config.PORT}`)
 })

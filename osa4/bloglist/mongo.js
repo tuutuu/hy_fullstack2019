@@ -35,4 +35,4 @@ if (process.argv.length < 7) {
     console.log(`lisätään blogi ${title} ${author} ${blogUrl} ${likes}`)
     mongoose.connection.close()
   })
-} 
+}

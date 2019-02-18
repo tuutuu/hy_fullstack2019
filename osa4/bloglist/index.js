@@ -1,6 +1,7 @@
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
+const config = require('./utils/config')
 const http = require('http')
 const express = require('express')
 const app = express()

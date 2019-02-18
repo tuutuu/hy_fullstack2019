@@ -133,7 +133,7 @@ describe('favorite blog', () => {
     }
   ]
 
-  test('equals blog with most likes', () => {
+  test('returns blog with most likes', () => {
     const result = listHelper.favoriteBlog(blogs)
     expect(result).toEqual(blogs[2])
   })

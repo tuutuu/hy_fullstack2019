@@ -11,3 +11,7 @@ Content-Type: application/json
   "url": "www.blogspot.com/akvblo",
   "likes": 500
 }
+
+###
+
+DELETE http://localhost:3003/api/blogs/5c6ab8ae9410e35ed39c946e

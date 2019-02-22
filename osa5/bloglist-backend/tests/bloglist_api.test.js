@@ -35,15 +35,15 @@ describe('when there are blogs saved', () => {
 
   test('a blog can be deleted', async () => {
     const blogsAtStart = await blogsInDb() 
-    const blockToDelete = blogsAtStart[0]
+    const blogToDelete = blogsAtStart[0]
 
     await api
-      .delete(`/api/blogs/${blockToDelete.id}`)
+      .delete(`/api/blogs/${blogToDelete.id}`)
       .expect(204)
 
     const blogsAtEnd = await blogsInDb() 
 
-    const deleted = blogsAtEnd.find(equalTo(blockToDelete))
+    const deleted = blogsAtEnd.find(equalTo(blogToDelete))
 
     expect(deleted).toBe(undefined)
 
@@ -52,19 +52,19 @@ describe('when there are blogs saved', () => {
 
   test('contents of a blog can be changed', async () => {
     const blogsAtStart = await blogsInDb()
-    const blockToChange = blogsAtStart[0]
+    const blogToChange = blogsAtStart[0]
 
-    const updatedBlog = { ...blockToChange, likes: blockToChange.likes + 1} 
+    const updatedBlog = { ...blogToChange, likes: blogToChange.likes + 1} 
 
     await api
-      .put(`/api/blogs/${blockToChange.id}`)
+      .put(`/api/blogs/${blogToChange.id}`)
       .send(updatedBlog)
       .expect(200)  
 
     const blogsAtEnd = await blogsInDb()
 
-    const changed = blogsAtEnd.find(equalTo(blockToChange))    
-    expect(changed.likes).toBe(blockToChange.likes + 1)
+    const changed = blogsAtEnd.find(equalTo(blogToChange))    
+    expect(changed.likes).toBe(blogToChange.likes + 1)
   })
 
   describe('adding a new blog', () => {

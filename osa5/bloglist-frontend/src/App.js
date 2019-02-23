@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import Blog from './components/Blog'
 import blogService from './services/blogs'
-import loginService from './services/login' 
+import loginService from './services/login'
+import BlogForm from './components/BlogForm'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
@@ -94,7 +95,8 @@ const App = () => {
                 logout
               </button>
               {listBlogs()}
-            </div> 
+              <BlogForm setBlogs={setBlogs} blogs={blogs}/>
+            </div>
         }
       </div>
     </div>

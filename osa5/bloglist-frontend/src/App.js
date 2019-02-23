@@ -34,41 +34,45 @@ const App = () => {
     }
   }
 
-  if (user === null) {
-    return (
+  const loginForm = () => (
+    <form onSubmit={handleLogin}>
       <div>
-        <h2>Log in to application</h2>
-        <form onSubmit={handleLogin}>
-          <div>
-            käyttäjätunnus
-            <input
-              type="text"
-              value={username}
-              name="Username"
-              onChange={({ target }) => setUsername(target.value)}
-            />
-          </div>
-          <div>
-            salasana
-            <input
-              type="password"
-              value={password}
-              name="Password"
-              onChange={({ target }) => setPassword(target.value)}
-            />
-          </div>
-          <button type="submit">kirjaudu</button>
-        </form>
+        käyttäjätunnus
+          <input
+          type="text"
+          value={username}
+          name="Username"
+          onChange={({ target }) => setUsername(target.value)}
+        />
       </div>
-    )
-  }
+      <div>
+        salasana
+          <input
+          type="password"
+          value={password}
+          name="Password"
+          onChange={({ target }) => setPassword(target.value)}
+        />
+      </div>
+      <button type="submit">kirjaudu</button>
+    </form>      
+  )
 
-  return (
+  const listBlogs = () => (
     <div>
       <h2>blogs</h2>
       {blogs.map(blog =>
         <Blog key={blog.id} blog={blog} />
       )}
+    </div>
+  )
+
+  return (
+    <div>
+      {user === null 
+        ? loginForm()
+        : listBlogs()  
+      }
     </div>
   )
 }

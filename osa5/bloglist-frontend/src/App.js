@@ -23,6 +23,7 @@ const App = () => {
         username, password,
       })
 
+      blogService.setToken(user.token)
       setUser(user)
       setUsername('')
       setPassword('')
@@ -69,10 +70,17 @@ const App = () => {
 
   return (
     <div>
-      {user === null 
-        ? loginForm()
-        : listBlogs()  
-      }
+      <p>{errorMessage}</p>
+
+      <div>
+        {user === null 
+          ? loginForm()
+          : <div>
+              <p>{user.name} logged in</p>
+              {listBlogs()} 
+            </div> 
+        }
+      </div>
     </div>
   )
 }

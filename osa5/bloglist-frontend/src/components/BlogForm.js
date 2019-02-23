@@ -26,6 +26,13 @@ const BlogForm = (props) => {
       url: url
     }
 
+    props.setNotification(
+      `New blog ${title} by ${author} added`
+    )
+      setTimeout(() => {
+        props.setNotification(null)
+      }, 5000)
+
     blogService
       .create(blogObject).then(returnedBlog => {
         props.setBlogs(props.blogs.concat(returnedBlog))

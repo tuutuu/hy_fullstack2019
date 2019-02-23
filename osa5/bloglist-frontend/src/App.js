@@ -3,10 +3,11 @@ import Blog from './components/Blog'
 import blogService from './services/blogs'
 import loginService from './services/login'
 import BlogForm from './components/BlogForm'
+import Notification from './components/Notification'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
-  const [errorMessage, setErrorMessage] = useState(null)
+  const [notification, setNotification] = useState(null)
   const [username, setUsername] = useState('') 
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
@@ -42,9 +43,9 @@ const App = () => {
       setUsername('')
       setPassword('')
     } catch (exception) {
-      setErrorMessage('käyttäjätunnus tai salasana virheellinen')
+      setNotification('käyttäjätunnus tai salasana virheellinen')
       setTimeout(() => {
-        setErrorMessage(null)
+        setNotification(null)
       }, 5000)
     }
   }
@@ -84,7 +85,7 @@ const App = () => {
 
   return (
     <div>
-      <p>{errorMessage}</p>
+      <Notification message={notification} />
 
       <div>
         {user === null 
@@ -95,7 +96,7 @@ const App = () => {
                 logout
               </button>
               {listBlogs()}
-              <BlogForm setBlogs={setBlogs} blogs={blogs}/>
+              <BlogForm setBlogs={setBlogs} blogs={blogs} setNotification={setNotification}/>
             </div>
         }
       </div>

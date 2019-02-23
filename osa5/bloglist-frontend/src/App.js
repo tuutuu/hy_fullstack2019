@@ -90,7 +90,10 @@ const App = () => {
           ? loginForm()
           : <div>
               <p>{user.name} logged in</p>
-              {listBlogs()} 
+              <button onClick={() => window.localStorage.clear()}>
+                logout
+              </button>
+              {listBlogs()}
             </div> 
         }
       </div>

@@ -2,11 +2,7 @@ import React, { useState } from 'react'
 import blogService from '../services/blogs'
 import PropTypes from 'prop-types'
 
-const BlogForm = ({
-    blogs,
-    setBlogs,
-    setNotification
-  }) => {
+const BlogForm = ({ blogs, setBlogs, setNotification }) => {
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [url, setUrl] = useState('')
@@ -34,9 +30,9 @@ const BlogForm = ({
     setNotification(
       `New blog ${title} by ${author} added`
     )
-      setTimeout(() => {
-        setNotification(null)
-      }, 5000)
+    setTimeout(() => {
+      setNotification(null)
+    }, 5000)
 
     blogService
       .create(blogObject).then(returnedBlog => {

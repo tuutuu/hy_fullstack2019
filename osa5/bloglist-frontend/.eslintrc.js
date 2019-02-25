@@ -27,10 +27,6 @@ module.exports = {
           "error",
           "unix"
       ],
-      "quotes": [
-          "error",
-          "single"
-      ],
       "semi": [
           "error",
           "never"
@@ -44,6 +40,7 @@ module.exports = {
           "error", { "before": true, "after": true }
       ],
       "no-console": 0,
-      "react/prop-types": 0
+      "react/prop-types": 0,
+      "no-unused-vars": 0
   }
 };

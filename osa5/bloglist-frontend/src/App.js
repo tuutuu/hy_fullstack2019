@@ -100,7 +100,7 @@ const App = () => {
               </button>
               {listBlogs()}
               <Togglable buttonLabel='new blog' ref={blogFormRef}>
-                <BlogForm setBlogs={setBlogs} blogs={blogs} setNotification={setNotification}/>
+                <BlogForm blogs={blogs} setBlogs={setBlogs} setNotification={setNotification}/>
               </Togglable>
             </div>
         }

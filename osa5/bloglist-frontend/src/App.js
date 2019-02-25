@@ -59,21 +59,11 @@ const App = () => {
     <form onSubmit={handleLogin}>
       <div>
         käyttäjätunnus
-        <input
-          type={username.type}
-          value={username.value}
-          name="Username"
-          onChange={username.onChange}
-        />
+        <input {...username} reset='text' />
       </div>
       <div>
         salasana
-        <input
-          type={password.type}
-          value={password.value}
-          name="Password"
-          onChange={password.onChange}
-        />
+        <input {...password} reset='text'/>
       </div>
       <button type="submit">kirjaudu</button>
     </form>

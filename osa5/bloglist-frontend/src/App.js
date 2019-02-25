@@ -4,6 +4,7 @@ import blogService from './services/blogs'
 import loginService from './services/login'
 import BlogForm from './components/BlogForm'
 import Notification from './components/Notification'
+import Togglable from './components/Togglable'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
@@ -83,6 +84,8 @@ const App = () => {
     </div>
   )
 
+  const blogFormRef = React.createRef()
+
   return (
     <div>
       <Notification message={notification} />
@@ -96,7 +99,9 @@ const App = () => {
                 logout
               </button>
               {listBlogs()}
-              <BlogForm setBlogs={setBlogs} blogs={blogs} setNotification={setNotification}/>
+              <Togglable buttonLabel='new blog' ref={blogFormRef}>
+                <BlogForm setBlogs={setBlogs} blogs={blogs} setNotification={setNotification}/>
+              </Togglable>
             </div>
         }
       </div>

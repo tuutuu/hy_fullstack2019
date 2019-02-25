@@ -5,18 +5,20 @@ import loginService from './services/login'
 import BlogForm from './components/BlogForm'
 import Notification from './components/Notification'
 import Togglable from './components/Togglable'
+import  { useField } from './hooks'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
   const [notification, setNotification] = useState(null)
-  const [username, setUsername] = useState('') 
-  const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
+
+  const username = useField('text')
+  const password = useField('password')
 
   useEffect(() => {
     blogService.getAll().then(blogs =>
       setBlogs( blogs )
-    )  
+    )
   }, [])
 
   useEffect(() => {
@@ -30,9 +32,11 @@ const App = () => {
 
   const handleLogin = async (event) => {
     event.preventDefault()
+
     try {
       const user = await loginService.login({
-        username, password,
+        username: username.value,
+        password: password.value
       })
 
       window.localStorage.setItem(
@@ -41,8 +45,8 @@ const App = () => {
 
       blogService.setToken(user.token)
       setUser(user)
-      setUsername('')
-      setPassword('')
+      username.reset()
+      password.reset()
     } catch (exception) {
       setNotification('käyttäjätunnus tai salasana virheellinen')
       setTimeout(() => {
@@ -55,24 +59,24 @@ const App = () => {
     <form onSubmit={handleLogin}>
       <div>
         käyttäjätunnus
-          <input
-          type="text"
-          value={username}
+        <input
+          type={username.type}
+          value={username.value}
           name="Username"
-          onChange={({ target }) => setUsername(target.value)}
+          onChange={username.onChange}
         />
       </div>
       <div>
         salasana
-          <input
-          type="password"
-          value={password}
+        <input
+          type={password.type}
+          value={password.value}
           name="Password"
-          onChange={({ target }) => setPassword(target.value)}
+          onChange={password.onChange}
         />
       </div>
       <button type="submit">kirjaudu</button>
-    </form>      
+    </form>
   )
 
   const listBlogs = () => (
@@ -91,18 +95,18 @@ const App = () => {
       <Notification message={notification} />
 
       <div>
-        {user === null 
+        {user === null
           ? loginForm()
           : <div>
-              <p>{user.name} logged in</p>
-              <button onClick={() => window.localStorage.clear()}>
+            <p>{user.name} logged in</p>
+            <button onClick={() => window.localStorage.clear()}>
                 logout
-              </button>
-              {listBlogs()}
-              <Togglable buttonLabel='new blog' ref={blogFormRef}>
-                <BlogForm blogs={blogs} setBlogs={setBlogs} setNotification={setNotification}/>
-              </Togglable>
-            </div>
+            </button>
+            {listBlogs()}
+            <Togglable buttonLabel='new blog' ref={blogFormRef}>
+              <BlogForm blogs={blogs} setBlogs={setBlogs} setNotification={setNotification}/>
+            </Togglable>
+          </div>
         }
       </div>
     </div>

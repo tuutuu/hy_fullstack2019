@@ -33,7 +33,7 @@ describe('SimpleBlog', () => {
     )
   })
 
-  test('renders author', () => {
+  test('renders likes', () => {
     expect(component.container).toHaveTextContent(
       `blog has ${blog.likes} likes`
     )

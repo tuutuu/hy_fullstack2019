@@ -4,11 +4,21 @@ const App = ({ store }) => {
   const anecdotes = store.getState()
   
   const vote = (id) => {
-    console.log('vote', id)
     store.dispatch({
       type: 'VOTE',
       data: {
         id: id
+      }
+    })
+  }
+
+  const add = (event) => {
+    event.preventDefault()
+    const content = event.target.content.value
+    store.dispatch({
+      type: 'ADD',
+      data: {
+        content: content
       }
     })
   }
@@ -28,9 +38,9 @@ const App = ({ store }) => {
         </div>
       )}
       <h2>create new</h2>
-      <form>
-        <div><input /></div>
-        <button>create</button>
+      <form onSubmit={add}>
+        <input name="content" />
+        <button type="submit">create</button>
       </form>
     </div>
   )

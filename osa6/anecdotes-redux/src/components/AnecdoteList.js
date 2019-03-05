@@ -10,9 +10,10 @@ const AnecdoteList = (props) => {
     return 0
   })
 
-  const vote = (anecdote) => {
-    props.voteAnecdote(anecdote.id)
-    props.voteNotification(anecdote.content)
+  const vote = (id) => {
+    const voted = anecdotes.find(a => a.id === id)
+    props.voteAnecdote(voted)
+    props.voteNotification(voted.content)
     setTimeout(() => {
       props.clearNotification()
     }, 5000)
@@ -28,7 +29,7 @@ const AnecdoteList = (props) => {
           </div>
           <div>
             has {anecdote.votes}
-            <button onClick={() => vote(anecdote)}>vote</button>
+            <button onClick={() => vote(anecdote.id)}>vote</button>
           </div>
         </div>
       )}

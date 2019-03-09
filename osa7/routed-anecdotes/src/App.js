@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {
   BrowserRouter as Router,
-  Route, Link, Redirect, withRouter
+  Route, Link, Redirect, /* withRouter */
 } from 'react-router-dom'
 
 const Menu = (props) => {
@@ -22,16 +22,13 @@ const Menu = (props) => {
           <Route path="/create" render={() => <CreateNew addNew={props.addNew} />} />
           <Route path="/about" render={() => <About />} />
           <Route exact path="/anecdotes/:id" render={({ match }) =>
-            <Anecdote anecdote={anecdoteById(match.params.id, props.anecdotes)} />
+            <Anecdote anecdote={props.anecdoteById(match.params.id, props.anecdotes)} />
           } />
         </div>
       </Router>
     </div>
   )
 }
-
-const anecdoteById = (id, anecdotes) =>
-  anecdotes.find(anecdote => anecdote.id === id)
 
 const AnecdoteList = ({ anecdotes }) => (
   <div>
@@ -81,7 +78,6 @@ const CreateNew = (props) => {
   const [content, setContent] = useState('')
   const [author, setAuthor] = useState('')
   const [info, setInfo] = useState('')
-
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -158,7 +154,7 @@ const App = () => {
   return (
     <div>
       <h1>Software anecdotes</h1>
-      <Menu anecdotes={anecdotes} addNew={addNew} />
+      <Menu anecdotes={anecdotes} addNew={addNew} anecdoteById={anecdoteById} />
       <Footer />
     </div>
   )

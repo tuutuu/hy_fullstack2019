@@ -78,6 +78,7 @@ const CreateNew = (props) => {
   const [content, setContent] = useState('')
   const [author, setAuthor] = useState('')
   const [info, setInfo] = useState('')
+  const [redirect, setRedirect] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -87,6 +88,13 @@ const CreateNew = (props) => {
       info,
       votes: 0
     })
+    setRedirect(true)
+  }
+
+  if (redirect) {
+    return (
+      <Redirect to="/anecdotes" />
+    )
   }
 
   return (
@@ -109,7 +117,6 @@ const CreateNew = (props) => {
       </form>
     </div>
   )
-
 }
 
 const App = () => {
@@ -135,12 +142,16 @@ const App = () => {
   const addNew = (anecdote) => {
     anecdote.id = (Math.random() * 10000).toFixed(0)
     setAnecdotes(anecdotes.concat(anecdote))
+    setNotification(`Anecdote "${anecdote.content}" created!`)
+    setTimeout(() => {
+      setNotification('')
+    }, 3000)
   }
 
   const anecdoteById = (id) =>
     anecdotes.find(a => a.id === id)
 
-  const vote = (id) => {
+/*  const vote = (id) => {
     const anecdote = anecdoteById(id)
 
     const voted = {
@@ -149,11 +160,12 @@ const App = () => {
     }
 
     setAnecdotes(anecdotes.map(a => a.id === id ? voted : a))
-  }
+  } */
 
   return (
     <div>
       <h1>Software anecdotes</h1>
+      <p>{notification}</p>
       <Menu anecdotes={anecdotes} addNew={addNew} anecdoteById={anecdoteById} />
       <Footer />
     </div>
